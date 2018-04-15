@@ -8,13 +8,37 @@ const sortByOptions = {
 };
 
 class SearchBar extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			term: '',
+			location:'',
+			sortBy: 'best_match'
+		};
+	}
+
+	//returns the current CSS class for a sorting option
+	getSortByClass(sortByOption) {
+		if(this.state.sortBy === sortByOption) {
+			return 'active';
+		} else {
+			return '';
+		}
+	}
+
+	handleSortByChange(sortByOption) {
+		this.setState({
+			sortBy: sortByOption
+		});
+	}
+
 	//dynamically create the list items needed to display the sort options 
 	//(Best Match, Highest Rated, Most Reviewed). 
 	//This is to help future proof against potential changes to the Yelp API
 	renderSortByOptions() {
 		return Object.keys(sortByOptions).map(sortByOption => {
 			let sortByOptionValue = sortByOptions[sortByOption];
-			return <li key={sortByOptionValue}>{sortByOption}</li>
+			return <li key={sortByOptionValue} className={this.getSortByClass(sortByOptionValue)}>{sortByOption}</li>
 		});
 	}
 
