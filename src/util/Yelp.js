@@ -9,21 +9,33 @@ class Yelp {
 		.then(
 			response => {
 				if(response.ok) {
-					console.log(response.json());
-			        //return response.json();
+					//console.log(response.json());
+			        return response.json();
 			    } else {
 			    	throw new Error('Request failed!');
 			    }
 			}
 		).then(
 			jsonResponse => {
-				// if(jsonResponse.hasOwnProperty('businesses')) {
-				// 	jsonResponse.businesses.map(
-				// 		business => {
-
-				// 		}
-				// 	);
-				// }
+				if(jsonResponse.hasOwnProperty('businesses')) {
+					const businessesArray =  jsonResponse.businesses.map(
+						business => {
+							return {
+								id: business.id,
+								imageSrc: business.image_url,
+								name: business.name,
+								address: business.location.display_address,
+								phone: business.display_phone,
+								category: business.categories,
+								rating: business.rating,
+								reviewCount: business.review_count,
+								coordinates: business.coordinates
+							};
+						}
+					);
+					console.log(businessesArray);
+					return businessesArray;
+				}
 			}
 		);
 	}
