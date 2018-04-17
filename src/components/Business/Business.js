@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './Business.css';
 
-
-
 class Business extends Component {
 	render() {
 		return (
