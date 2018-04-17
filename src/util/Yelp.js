@@ -10,7 +10,7 @@ class Yelp {
 		if(!location) {
 			location = 'austria';
 		}
-		return fetch(`${cors}https://api.yelp.com/v3/businesses/search?term=vegan,${term}&location=${location}&sort_by=${sortBy}`, { 
+		return fetch(`${cors}https://api.yelp.com/v3/businesses/search?term=vegan,${term}&location=${location}&sort_by=${sortBy}&limit=35`, { 
 		  headers: { Authorization: `Bearer ${apiKey}` }
 		})
 		.then(
@@ -35,7 +35,7 @@ class Yelp {
 								name: business.name,
 								address: business.location.display_address,
 								phone: business.display_phone,
-								category: business.categories,
+								categories: business.categories,
 								rating: business.rating,
 								reviewCount: business.review_count,
 								coordinates: business.coordinates,
