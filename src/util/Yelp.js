@@ -3,6 +3,7 @@ const cors = 'https://cors-anywhere.herokuapp.com/';
 
 class Yelp {
 	search(term, location, sortBy) {
+		//make it work when inputs are empty
 		return fetch(`${cors}https://api.yelp.com/v3/businesses/search?term=vegan,${term}&location=${location}&sort_by=${sortBy}`, { 
 		  headers: { Authorization: `Bearer ${apiKey}` }
 		})
