@@ -3,7 +3,13 @@ const cors = 'https://cors-anywhere.herokuapp.com/';
 
 class Yelp {
 	search(term, location, sortBy) {
-		//make it work when inputs are empty
+		//assign default values if input fields are empty
+		if(!term) {
+			term = 'food';
+		}
+		if(!location) {
+			location = 'austria';
+		}
 		return fetch(`${cors}https://api.yelp.com/v3/businesses/search?term=vegan,${term}&location=${location}&sort_by=${sortBy}`, { 
 		  headers: { Authorization: `Bearer ${apiKey}` }
 		})
@@ -11,7 +17,9 @@ class Yelp {
 			response => {
 				if(response.ok) {
 					//console.log(response.json());
-			        return response.json();
+					let rsp = response.json();
+					console.log(rsp);
+			        return rsp;
 			    } else {
 			    	throw new Error('Request failed!');
 			    }
@@ -30,11 +38,13 @@ class Yelp {
 								category: business.categories,
 								rating: business.rating,
 								reviewCount: business.review_count,
-								coordinates: business.coordinates
+								coordinates: business.coordinates,
+								isClosed: business.is_closed,
+								url: business.url
 							};
 						}
 					);
-					console.log(businessesArray);
+					//console.log(businessesArray);
 					return businessesArray;
 				}
 			}
