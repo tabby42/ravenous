@@ -14,6 +14,7 @@ import Yelp from './util/Yelp';
 // Allow you to search by pressing "Enter" (or "Return") on your keyboard, 
 //as opposed to manually clicking
 // Add autocompletion of addresses to the "Location" input
+//show Reviews
 
 class App extends Component {
   constructor(props) {
